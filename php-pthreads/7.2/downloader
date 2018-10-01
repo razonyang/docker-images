@@ -1,0 +1,32 @@
+#!/usr/local/bin/php
+<?php
+
+class Downloader extends \Thread 
+{
+    public $file;
+    
+    public function __construct($file) 
+    {
+        $this->file = $file;
+    }
+
+    public function run()
+    {
+        echo 'Downloading file: ' . $this->file . PHP_EOL;
+        $startedAt = microtime(true);
+        usleep(rand(10000, 1000000));
+        $processingTime = microtime(true) - $startedAt;
+        echo sprintf('Downloaded %s: %.3f ms', $this->file, $processingTime) . PHP_EOL;
+    }
+}
+
+$files = ['foo', 'bar', 'baz'];
+$threads = [];
+foreach ($files as $file) {
+    $thread = new Downloader($file);
+    $threads[] = $thread;
+    $thread->start();
+}
+foreach ($threads as $thread) {
+    $thread->join();
+}
