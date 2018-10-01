@@ -1,7 +1,7 @@
 # PHP pthreads
 
 ```
-docker run razon:php-pthreads 
+docker run razon/php-pthreads 
 ```
 
 ## Tags
