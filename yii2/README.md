@@ -9,5 +9,5 @@ docker run razon/yii2
 ## MySQL image built on top of Basic image
 
 ```
-docker run razon/yii2-mysql
+docker run razon/yii2:mysql
 ```
