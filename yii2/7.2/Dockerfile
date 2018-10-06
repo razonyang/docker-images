@@ -8,3 +8,12 @@ RUN apt-get update \
         libpng-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
+
+# Cron
+RUN apt-get install -y cron
+COPY crontab /etc/crontab
+RUN chmod 644 /etc/crontab
+RUN crontab /etc/crontab
+
+# Supervisor
+
